@@ -25,3 +25,17 @@ const nextConfig: NextConfig = {
 };
 
 export default nextConfig;
+export default {
+  // ...其他配置
+  experimental: {
+    // 忽略 ecosystem 目录构建
+    serverComponentsExternalPackages: [],
+  },
+  webpack: (config) => {
+    config.module.rules.push({
+      test: /ecosystem/,
+      use: "ignore-loader",
+    });
+    return config;
+  },
+};
